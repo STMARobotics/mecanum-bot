@@ -9,7 +9,6 @@ import frc.robot.commands.AutoDriveCommand;
 import frc.robot.commands.TeleopDriveCommand;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.PrintCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -32,8 +31,6 @@ public class RobotContainer {
     teleopDriveCommand = new TeleopDriveCommand(xboxController);
     drivetrainSubsystem = new DrivetrainSubsystem();
     drivetrainSubsystem.setDefaultCommand(teleopDriveCommand);
-
-    configureButtonBindings();
   }
 
   public Command getAutonomousCommand() {
