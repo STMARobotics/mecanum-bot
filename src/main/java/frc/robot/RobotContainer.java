@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.TeleopDriveCommand;
 import frc.robot.subsystems.DrivetrainSubsystem;
@@ -35,8 +34,6 @@ public class RobotContainer {
 
     configureButtonBindings();
   }
-
-  private void configureButtonBindings() {}
 
   public Command getAutonomousCommand() {
     return new PrintCommand("Running auto");

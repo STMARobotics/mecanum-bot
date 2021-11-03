@@ -23,4 +23,9 @@ public class TeleopDriveCommand extends CommandBase {
             -xboxController.getX(Hand.kRight) / 2);
     }
 
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
+
 }
