@@ -4,44 +4,57 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.PWMSparkMax;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
-/** This is a demo program showing how to use Mecanum control with the RobotDrive class. */
 public class Robot extends TimedRobot {
-  private static final int kFrontLeftChannel = 3;
-  private static final int kRearLeftChannel = 2;
-  private static final int kFrontRightChannel = 1;
-  private static final int kRearRightChannel = 0;
-
-  private static final int kJoystickChannel = 0;
-
-  private MecanumDrive m_robotDrive;
-  private XboxController m_stick;
+  private Command autonomousCommand;
+  private RobotContainer robotContainer;
 
   @Override
   public void robotInit() {
-    WPI_TalonSRX frontLeft = new WPI_TalonSRX(kFrontLeftChannel);
-    WPI_TalonSRX rearLeft = new WPI_TalonSRX(kRearLeftChannel);
-    WPI_TalonSRX frontRight = new WPI_TalonSRX(kFrontRightChannel);
-    WPI_TalonSRX rearRight = new WPI_TalonSRX(kRearRightChannel);
-
-    m_robotDrive = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
-
-    m_stick = new XboxController(kJoystickChannel);
+    robotContainer = new RobotContainer();
   }
 
   @Override
-  public void teleopPeriodic() {
-    m_robotDrive.driveCartesian(
-      m_stick.getX(Hand.kLeft) / 2,
-      m_stick.getY(Hand.kLeft) / 2,
-      -m_stick.getX(Hand.kRight) / 2);
+  public void robotPeriodic() {
+    CommandScheduler.getInstance().run();
   }
+
+  @Override
+  public void disabledInit() {}
+
+  @Override
+  public void disabledPeriodic() {}
+
+  @Override
+  public void autonomousInit() {
+    autonomousCommand = robotContainer.getAutonomousCommand();
+
+    if (autonomousCommand != null) {
+      autonomousCommand.schedule();
+    }
+  }
+
+  @Override
+  public void autonomousPeriodic() {}
+
+  @Override
+  public void teleopInit() {
+    if (autonomousCommand != null) {
+      autonomousCommand.cancel();
+    }
+  }
+
+  @Override
+  public void teleopPeriodic() {}
+
+  @Override
+  public void testInit() {
+    CommandScheduler.getInstance().cancelAll();
+  }
+
+  @Override
+  public void testPeriodic() {}
 }
