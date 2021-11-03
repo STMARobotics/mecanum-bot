@@ -31,8 +31,6 @@ public class RobotContainer {
     teleopDriveCommand = new TeleopDriveCommand(xboxController);
     drivetrainSubsystem = new DrivetrainSubsystem();
     drivetrainSubsystem.setDefaultCommand(teleopDriveCommand);
-
-    configureButtonBindings();
   }
 
   public Command getAutonomousCommand() {
