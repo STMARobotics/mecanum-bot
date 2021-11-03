@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.AutoDriveCommand;
 import frc.robot.commands.TeleopDriveCommand;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -36,6 +37,7 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return new PrintCommand("Running auto");
+    return new AutoDriveCommand(.1, .1, 0, drivetrainSubsystem).withTimeout(1)
+      .andThen(new AutoDriveCommand(.1, .1, .5, drivetrainSubsystem).withTimeout(1));
   }
 }
