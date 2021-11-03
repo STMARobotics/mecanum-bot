@@ -32,11 +32,6 @@ public class Robot extends TimedRobot {
     WPI_TalonSRX frontRight = new WPI_TalonSRX(kFrontRightChannel);
     WPI_TalonSRX rearRight = new WPI_TalonSRX(kRearRightChannel);
 
-    // Invert the left side motors.
-    // You may need to change or remove this to match your robot.
-    frontLeft.setInverted(true);
-    rearLeft.setInverted(true);
-
     m_robotDrive = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
 
     m_stick = new XboxController(kJoystickChannel);
@@ -44,8 +39,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    // Use the joystick X axis for lateral movement, Y axis for forward
-    // movement, and Z axis for rotation.
-    m_robotDrive.driveCartesian(m_stick.getY(Hand.kLeft), m_stick.getX(Hand.kLeft), m_stick.getX(Hand.kRight));
+    m_robotDrive.driveCartesian(
+      m_stick.getX(Hand.kLeft) / 2,
+      m_stick.getY(Hand.kLeft) / 2,
+      -m_stick.getX(Hand.kRight) / 2);
   }
 }
