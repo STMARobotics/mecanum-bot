@@ -1,6 +1,5 @@
 package frc.robot.commands.autos;
 
-import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveStraightCommand;
 import frc.robot.commands.SpinCommand;
