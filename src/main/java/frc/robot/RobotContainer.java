@@ -60,7 +60,7 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    // we don't need to worry about scheduling the command, wpilib handles that for us
+    // we don't need to worry about scheduling the command, the generated template handles that for us
     return autoChooser.getSelected(); // returns the command that is selected in the auto chooser on SmartDashboard
   }
 
