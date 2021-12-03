@@ -7,11 +7,12 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class TeleopDriveCommand extends CommandBase {
     
-    private XboxController xboxController;
-    private DrivetrainSubsystem drivetrainSubsystem;
+    private final XboxController xboxController;
+    private final DrivetrainSubsystem drivetrainSubsystem;
 
-    public TeleopDriveCommand(XboxController controller) {
+    public TeleopDriveCommand(XboxController controller, DrivetrainSubsystem drivetrainSubsystem) {
         this.xboxController = controller;
+        this.drivetrainSubsystem = drivetrainSubsystem;
         addRequirements(drivetrainSubsystem);
     }
 

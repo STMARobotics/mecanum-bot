@@ -40,8 +40,8 @@ public class RobotContainer {
 
   public RobotContainer() {
     xboxController = new XboxController(kJoystickChannel); // instantiate xboxController using kJoystickChannel constant
-    teleopDriveCommand = new TeleopDriveCommand(xboxController); // instantiate teleopDriveCommand
     drivetrainSubsystem = new DrivetrainSubsystem(); // instantiate the DrivetrainSubsystem
+    teleopDriveCommand = new TeleopDriveCommand(xboxController, drivetrainSubsystem); // instantiate teleopDriveCommand
     drivetrainSubsystem.setDefaultCommand(teleopDriveCommand); // set the default command of DrivetrainSubsystem to teleopDriveCommand
     initAutoChooser(); // setup the autoChooser
     configureButtonBindings(); // setup any button bindings we want on the controller
