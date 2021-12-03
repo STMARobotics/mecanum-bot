@@ -20,6 +20,7 @@ public class DriveStraightCommand extends CommandBase {
 
     @Override
     public void initialize() {
+        timer.reset();
         timer.start();
     }
 
