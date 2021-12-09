@@ -20,7 +20,7 @@ public class TeleopDriveCommand extends CommandBase {
     public void execute() {
         drivetrainSubsystem.drive(
             xboxController.getX(Hand.kLeft) / 2,
-            xboxController.getY(Hand.kLeft) / 2,
+            -xboxController.getY(Hand.kLeft) / 2,
             -xboxController.getX(Hand.kRight) / 2);
     }
 
